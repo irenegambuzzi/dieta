@@ -4,8 +4,12 @@ Pagina personale per seguire la dieta. Sito statico su GitHub Pages + Supabase (
 
 ## Com'è fatto
 - `index.html`, `css/`, `js/` — la pagina, senza build: si modifica e si pubblica.
+  - `js/app.js` nucleo (sessione, navigazione, finestre di modifica, calcoli)
+  - `js/oggi.js` diario del giorno · `js/peso.js` peso e punto vita
+  - `js/cucina.js` piano settimanale, ricette, alimenti (codice a barre / Open Food Facts), drink
+  - `js/spesa.js` lista della spesa · `js/impostazioni.js` obiettivi, backup, account
 - `js/config.js` — indirizzo del progetto Supabase e **chiave pubblica** (publishable). Nient'altro.
-- `vendor/` — libreria Supabase JS (copia fissa, versione nel nome del file).
+- `vendor/` — librerie in copia fissa (versione nel nome del file): Supabase JS e ZXing (lettura codici a barre, caricata solo quando si usa la fotocamera).
 - `supabase/migrations/` — lo schema del database. Si applica con `supabase db push`.
 - `scripts/controlla-segreti.sh` — controlla che nel repository non ci siano segreti (gira prima di ogni push).
 

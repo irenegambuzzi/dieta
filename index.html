@@ -57,73 +57,112 @@
 
       <!-- OGGI -->
       <section id="sezione-oggi" class="sezione" data-sezione="oggi">
-        <header class="testa">
-          <p class="sopratitolo" id="oggi-data">—</p>
-          <h1 class="titolo">Oggi</h1>
+        <header class="testa testa-giorno">
+          <div>
+            <p class="sopratitolo" id="oggi-data">—</p>
+            <h1 class="titolo" id="oggi-titolo">Oggi</h1>
+          </div>
+          <div class="frecce">
+            <button type="button" class="tondo" data-giorno="-1" aria-label="Giorno prima"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" class="tondo" data-giorno="1" aria-label="Giorno dopo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
         </header>
+        <div class="chips" id="oggi-chip"></div>
 
         <div class="cruscotto">
           <div class="kcal">
             <span class="kcal-numero" id="kcal-rimanenti">—</span>
-            <span class="kcal-etichetta">kcal rimaste<br>su <b id="kcal-obiettivo">—</b></span>
+            <span class="kcal-etichetta" id="kcal-etichetta">kcal rimaste</span>
           </div>
-          <div class="barre" id="barre-macro">
-            <!-- riempito da app.js -->
-          </div>
+          <div class="barre" id="barre-macro"></div>
         </div>
 
-        <h2 class="occhiello">Pasti del piano</h2>
-        <ol class="pasti">
-          <li class="pasto"><span class="pasto-nome">Colazione</span><span class="pasto-stato">in arrivo</span></li>
-          <li class="pasto"><span class="pasto-nome">Pranzo</span><span class="pasto-stato">in arrivo</span></li>
-          <li class="pasto"><span class="pasto-nome">Pre-allenamento</span><span class="pasto-stato">in arrivo</span></li>
-          <li class="pasto"><span class="pasto-nome">Cena</span><span class="pasto-stato">in arrivo</span></li>
-        </ol>
+        <h2 class="occhiello">Pasti</h2>
+        <ol class="pasti" id="oggi-pasti"></ol>
+        <button type="button" class="bottone secondario" data-azione="aggiungi-generico">+ Aggiungi a un pasto</button>
 
         <div class="riga-doppia">
           <div class="tessera">
             <h2 class="occhiello">Acqua</h2>
-            <p class="numero-medio"><span id="acqua-bicchieri">0</span><small> / <span id="acqua-obiettivo">—</span> bicchieri</small></p>
+            <p class="numero-medio"><span id="acqua-bicchieri">0</span><small> / <span id="acqua-obiettivo">—</span></small></p>
+            <p class="tessera-sotto" id="acqua-ml"></p>
+            <div class="contatore">
+              <button type="button" class="tondo" data-acqua="-1" aria-label="Un bicchiere in meno">−</button>
+              <button type="button" class="tondo pieno" data-acqua="1" aria-label="Un bicchiere in più">+</button>
+            </div>
           </div>
-          <div class="tessera">
-            <h2 class="occhiello">Extra</h2>
-            <p class="segnaposto">Alimenti fuori piano, codice a barre e drink.</p>
-          </div>
+          <button type="button" class="tessera tessera-tocco" data-azione="passi">
+            <span class="occhiello">Passi</span>
+            <span class="numero-medio" id="passi-numero">—</span>
+            <span class="tessera-sotto" id="passi-obiettivo"></span>
+          </button>
         </div>
+        <button type="button" class="tessera tessera-tocco nota-giorno" data-azione="nota">
+          <span class="occhiello">Nota</span>
+          <span id="oggi-nota"></span>
+        </button>
       </section>
 
       <!-- PESO -->
       <section id="sezione-peso" class="sezione" data-sezione="peso" hidden>
         <header class="testa">
-          <p class="sopratitolo">Media settimanale</p>
+          <p class="sopratitolo" id="peso-sopra">Media settimanale</p>
           <h1 class="titolo">Peso</h1>
         </header>
-        <div class="vuoto">
-          <p class="numero-grande">— <small>kg</small></p>
-          <p class="segnaposto">Qui arriveranno la pesata del mattino, il grafico delle medie settimanali e il punto vita.</p>
+        <div class="cruscotto">
+          <p class="numero-grande" id="peso-media">— <small>kg</small></p>
+          <p class="segnaposto" id="peso-delta"></p>
+          <div class="grafico" id="peso-grafico"></div>
         </div>
+        <button type="button" class="bottone primario largo" data-azione="pesa" id="peso-oggi">Pesata di oggi</button>
+
+        <h2 class="occhiello">Medie settimanali</h2>
+        <dl class="elenco-valori" id="peso-settimane"></dl>
+
+        <h2 class="occhiello">Punto vita</h2>
+        <div class="tessera riga-tessera">
+          <p class="numero-medio" id="vita-ultimo">— <small>cm</small></p>
+          <button type="button" class="bottone piccolo" data-azione="vita">+ Misura</button>
+        </div>
+        <ul class="voci elenco-bianco" id="vita-elenco"></ul>
+
+        <h2 class="occhiello">Tutte le pesate</h2>
+        <ul class="voci elenco-bianco" id="peso-elenco"></ul>
       </section>
 
-      <!-- RICETTE -->
-      <section id="sezione-ricette" class="sezione" data-sezione="ricette" hidden>
+      <!-- CUCINA -->
+      <section id="sezione-cucina" class="sezione" data-sezione="cucina" hidden>
         <header class="testa">
-          <p class="sopratitolo">Ingredienti in grammi</p>
-          <h1 class="titolo">Ricette</h1>
+          <p class="sopratitolo">Piano, ricette e alimenti</p>
+          <h1 class="titolo">Cucina</h1>
         </header>
-        <div class="vuoto">
-          <p class="segnaposto">Le tue ricette con procedimento e macro per porzione.</p>
-        </div>
+        <div class="schede" role="tablist" id="cucina-schede"></div>
+        <div id="cucina-corpo"></div>
       </section>
 
       <!-- SPESA -->
       <section id="sezione-spesa" class="sezione" data-sezione="spesa" hidden>
-        <header class="testa">
-          <p class="sopratitolo" id="spesa-settimana">Questa settimana</p>
-          <h1 class="titolo">Spesa</h1>
+        <header class="testa testa-giorno">
+          <div>
+            <p class="sopratitolo" id="spesa-date">—</p>
+            <h1 class="titolo">Spesa</h1>
+          </div>
+          <div class="frecce">
+            <button type="button" class="tondo" data-settimana="-1" aria-label="Settimana prima"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+            <button type="button" class="tondo" data-settimana="1" aria-label="Settimana dopo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          </div>
         </header>
-        <div class="vuoto">
-          <p class="segnaposto">La lista della settimana, con le caselle da spuntare.</p>
+        <p class="segnaposto"><span id="spesa-settimana"></span> <span id="spesa-conto"></span></p>
+        <form id="spesa-veloce" class="aggiunta-veloce" autocomplete="off">
+          <input name="voce" type="text" placeholder="Aggiungi… (es. zucchine, 1 kg)" aria-label="Aggiungi alla spesa" enterkeyhint="done">
+          <button type="submit" class="tondo pieno" aria-label="Aggiungi">+</button>
+        </form>
+        <div class="azioni-riga larga">
+          <button type="button" class="bottone piccolo" data-azione="genera">Genera dal piano</button>
+          <button type="button" class="bottone piccolo" data-azione="aggiungi">Aggiungi con reparto</button>
+          <button type="button" class="bottone piccolo" data-azione="pulisci" id="spesa-pulisci">Togli le spuntate</button>
         </div>
+        <div id="spesa-elenco"></div>
       </section>
 
       <!-- IMPOSTAZIONI -->
@@ -134,9 +173,13 @@
         </header>
 
         <h2 class="occhiello">Obiettivi giornalieri</h2>
-        <dl class="elenco-valori" id="elenco-obiettivi">
-          <!-- riempito da app.js -->
-        </dl>
+        <form id="form-obiettivi" class="riquadro modulo" novalidate></form>
+
+        <h2 class="occhiello">I tuoi dati</h2>
+        <div class="riquadro">
+          <p class="segnaposto">Scarica una copia di tutti i dati (file .json), da tenere come backup.</p>
+          <button type="button" class="bottone secondario" id="esporta">Scarica una copia dei dati</button>
+        </div>
 
         <h2 class="occhiello">Account</h2>
         <dl class="elenco-valori">
@@ -156,9 +199,9 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17.5 9 11l4 3.5 7.5-8"/><path d="M15.5 6.5h5v5"/></svg>
         <span>Peso</span>
       </a>
-      <a href="#ricette" data-vai="ricette">
+      <a href="#cucina" data-vai="cucina">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5h16a8 8 0 0 1-16 0z"/><path d="M9 8.5c0-1.5 1-2 1-3.5M13.5 8.5c0-1.5 1-2 1-3.5"/></svg>
-        <span>Ricette</span>
+        <span>Cucina</span>
       </a>
       <a href="#spesa" data-vai="spesa">
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4.5" width="15" height="15" rx="4"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>
@@ -171,8 +214,17 @@
     </nav>
   </div>
 
+  <!-- Finestra di modifica e avvisi -->
+  <dialog id="foglio" class="foglio" aria-label="Modifica"></dialog>
+  <div id="avviso" class="avviso" role="status" aria-live="polite"></div>
+
   <script src="vendor/supabase-2.117.3.js"></script>
   <script src="js/config.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/oggi.js"></script>
+  <script src="js/peso.js"></script>
+  <script src="js/cucina.js"></script>
+  <script src="js/spesa.js"></script>
+  <script src="js/impostazioni.js"></script>
 </body>
 </html>
