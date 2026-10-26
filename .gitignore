@@ -1,0 +1,15 @@
+# Segreti: non devono MAI finire nel repository
+.env
+.env.*
+*.pem
+*.key
+supabase/.env
+supabase/.temp/
+supabase/.branches/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+node_modules/
